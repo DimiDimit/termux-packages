@@ -23,7 +23,7 @@ else
 	VOLUME=$REPOROOT:$CONTAINER_HOME_DIR/termux-packages
 fi
 
-: ${TERMUX_BUILDER_IMAGE_NAME:=ghcr.io/termux/package-builder}
+: ${TERMUX_BUILDER_IMAGE_NAME:=ghcr.io/termux/package-builder@sha256:dab3a9aa3d4c1ceebad55496508202c54c6e2373ad88a664428572c8ece81415}
 : ${CONTAINER_NAME:=termux-package-builder}
 
 USER=builder
@@ -64,7 +64,7 @@ $SUDO docker start $CONTAINER_NAME >/dev/null 2>&1 || {
 	fi
 }
 
-# Set traps to ensure that the process started with docker exec and all its children are killed. 
+# Set traps to ensure that the process started with docker exec and all its children are killed.
 . "$TERMUX_SCRIPTDIR/scripts/utils/docker/docker.sh"; docker__setup_docker_exec_traps
 
 if [ "$#" -eq "0" ]; then
